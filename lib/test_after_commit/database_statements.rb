@@ -8,7 +8,7 @@ module TestAfterCommit::DatabaseStatements
         if ActiveRecord::VERSION::MAJOR == 3
           @_current_transaction_records.push([]) if @_current_transaction_records.empty?
         end
-        result = yield
+        result = yield if block_given?
       rescue Exception
         rolled_back = true
         raise
